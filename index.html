@@ -1,105 +1,298 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Administração na Prática — Silvanio Gois</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administração na Prática</title>
   <style>
-    body{margin:0;padding:32px;font-family:Inter,Arial,sans-serif;background:#f9fbfc;color:#222;line-height:1.6}
-    h1,h2,h3{color:#27628d;margin-top:0}
-    h2{font-size:2rem;margin-bottom:16px}
-    .wrap{max-width:1100px;margin:auto}
-    .card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:24px;transition:transform .2s, box-shadow .2s}
-    .card:hover{transform:translateY(-4px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
-    .meta{color:#555;font-size:13px}
-    header,footer{text-align:center;margin-bottom:24px}
-    header{border-bottom:2px solid #27628d;padding-bottom:12px}
-    header .header-content{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    header h1{font-size:20px;margin-bottom:6px;text-align:left}
-    header .text-block{text-align:left;flex:1}
-    header img{max-height:120px;border-radius:12px;object-fit:cover}
-    footer{border-top:1px solid #ccc;padding-top:12px;font-size:14px;color:#444}
-    a{color:#27628d;text-decoration:none;transition:color .2s}
-    a:hover{color:#17405a;text-decoration:underline}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
 
-    table{width:100%;border-collapse:collapse;margin-top:16px}
-    th,td{border:1px solid #ddd;padding:10px;text-align:left}
-    th{background:#27628d;color:#fff}
-    tr:nth-child(even){background:#f2f7fa}
+    /* ====== Cabeçalho ====== */
+    header {
+      background-color: #27628d;
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px}
-    .skill-card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,.06);transition:transform .2s, box-shadow .2s}
-    .skill-card:hover{transform:translateY(-4px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
-    .skill-card h4{margin:0 0 8px 0;color:#27628d}
+    .header-text {
+      max-width: 60%;
+    }
+
+    .header-text h1 {
+      font-size: 1.4rem;
+      margin: 0 0 8px;
+    }
+
+    .header-text p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+
+    .header-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #fff;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeZoom 1.2s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .header-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ====== Título principal ====== */
+    h2.titulo {
+      font-size: 2.8rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 40px 0 20px;
+      background: linear-gradient(90deg, #27628d, #4fa3d1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    h2.titulo:hover {
+      transform: scale(1.05);
+    }
+
+    .intro-text {
+      text-align: center;
+      font-size: 1.1rem;
+      max-width: 900px;
+      margin: auto;
+      margin-bottom: 40px;
+      line-height: 1.6;
+      color: #444;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.4s;
+    }
+
+    /* ====== Seção ====== */
+    section {
+      padding: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h3 {
+      text-align: center;
+      color: #27628d;
+      margin-bottom: 20px;
+    }
+
+    /* ====== Tabela ====== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 2s;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: #27628d;
+      color: white;
+    }
+
+    table tr:hover {
+      background-color: #f1f9ff;
+    }
+
+    /* ====== Cards ====== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.9s ease forwards;
+    }
+
+    .card:nth-child(1) {
+      animation-delay: 2.6s;
+    }
+    .card:nth-child(2) {
+      animation-delay: 3s;
+    }
+    .card:nth-child(3) {
+      animation-delay: 3.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .card h4 {
+      margin-bottom: 10px;
+      color: #27628d;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* ====== Rodapé ====== */
+    footer {
+      background-color: #27628d;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #ddd;
+    }
+
+    /* ====== Animações ====== */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeZoom {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="header-content">
-        <div class="text-block">
-          <h1>Silvanio Gois</h1>
-          <p class="meta">Técnico em Administração e Edificações | Graduando em Processos Gerenciais<br>
-            <a href="mailto:sg@silvaniogois.com.br">sg@silvaniogois.com.br</a> | 
-            <a href="https://www.silvaniogois.com.br" target="_blank">www.silvaniogois.com.br</a>
-          </p>
-        </div>
-        <img src="SG%20Executivo.png" alt="Foto de Silvanio Gois">
+
+  <!-- ====== Cabeçalho ====== -->
+  <header>
+    <div class="header-text">
+      <h1>Silvanio Gois — Técnico em Administração e Edificações</h1>
+      <p>Graduando em Processos Gerenciais</p>
+      <p>Email: sg@silvaniogois.com.br</p>
+      <p>Site: www.silvaniogois.com.br</p>
+    </div>
+    <div class="header-photo">
+      <img src="SG%20Executivo.png" alt="Silvanio Gois">
+    </div>
+  </header>
+
+  <!-- ====== Título Principal ====== -->
+  <h2 class="titulo">Administração na Prática</h2>
+  <p class="intro-text">
+    Integro as teorias de Taylor, Fayol e Drucker às minhas práticas em administração, edificações e processos gerenciais.  
+    Abaixo apresento como relaciono minhas habilidades e competências a cada abordagem.
+  </p>
+
+  <!-- ====== Tabela Comparativa ====== -->
+  <section>
+    <h3>Teorias e Aplicações</h3>
+    <table>
+      <tr>
+        <th>Teoria</th>
+        <th>Como aplico</th>
+        <th>Habilidades / Competências</th>
+      </tr>
+      <tr>
+        <td>Frederick Taylor — Administração Científica</td>
+        <td>Padronização de tarefas, uso de checklists, análise de tempos e redução de desperdícios.</td>
+        <td>Planejamento de processos, otimização de recursos, aumento da produtividade.</td>
+      </tr>
+      <tr>
+        <td>Henri Fayol — Teoria Clássica</td>
+        <td>Organização e comando das equipes, aplicação de disciplina, ordem e espírito de equipe.</td>
+        <td>Liderança, gestão de equipes, comunicação eficaz, disciplina organizacional.</td>
+      </tr>
+      <tr>
+        <td>Peter Drucker — Gestão por Objetivos (MBO)</td>
+        <td>Definição de metas claras, indicadores de desempenho e alinhamento estratégico.</td>
+        <td>Visão estratégica, análise de indicadores, foco em resultados, inovação.</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- ====== Cards ====== -->
+  <section>
+    <h3>Aplicação Pessoal</h3>
+    <div class="cards">
+      <div class="card">
+        <h4>Frederick Taylor</h4>
+        <p>“Ao padronizar rotinas e aplicar checklists, desenvolvi a competência de <strong>otimizar recursos, aumentar a produtividade e planejar processos</strong> em obras e atividades administrativas.”</p>
       </div>
-    </header>
+      <div class="card">
+        <h4>Henri Fayol</h4>
+        <p>“Com os princípios de Fayol, fortaleço minha habilidade de <strong>liderar equipes, estruturar processos e manter disciplina organizacional</strong>.”</p>
+      </div>
+      <div class="card">
+        <h4>Peter Drucker</h4>
+        <p>“Aplicando Drucker, aprimorei minha competência em <strong>definir metas claras, acompanhar indicadores e alinhar resultados</strong> aos objetivos estratégicos.”</p>
+      </div>
+    </div>
+  </section>
 
-    <main>
-      <section class="card">
-        <h2>Administração na Prática</h2>
-        <p>Integro as teorias de Taylor, Fayol e Drucker às minhas práticas em <strong>administração, edificações e processos gerenciais</strong>. Abaixo apresento como relaciono minhas habilidades e competências a cada abordagem.</p>
+  <!-- ====== Rodapé ====== -->
+  <footer>
+    © 2025 Silvanio Gois — Todos os direitos reservados | 
+    <a href="https://www.silvaniogois.com.br">Retornar ao site</a>
+  </footer>
 
-        <h3>Visão Geral</h3>
-        <table>
-          <tr>
-            <th>Teoria</th>
-            <th>Como aplico</th>
-            <th>Habilidades / Competências</th>
-          </tr>
-          <tr>
-            <td>Frederick Taylor — Administração Científica</td>
-            <td>Padronização de tarefas, uso de checklists, análise de tempos e redução de desperdícios.</td>
-            <td>Planejamento de processos, otimização de recursos, aumento da produtividade.</td>
-          </tr>
-          <tr>
-            <td>Henri Fayol — Teoria Clássica</td>
-            <td>Organização e comando das equipes, aplicação de disciplina, ordem e espírito de equipe.</td>
-            <td>Liderança, gestão de equipes, comunicação eficaz, disciplina organizacional.</td>
-          </tr>
-          <tr>
-            <td>Peter Drucker — Gestão por Objetivos (MBO)</td>
-            <td>Definição de metas claras, indicadores de desempenho e alinhamento estratégico.</td>
-            <td>Visão estratégica, análise de indicadores, foco em resultados, inovação.</td>
-          </tr>
-        </table>
-
-        <h3>Habilidades em Destaque</h3>
-        <div class="grid">
-          <div class="skill-card">
-            <h4>Frederick Taylor</h4>
-            <p>Ao aplicar a administração científica, desenvolvi a competência de <strong>otimizar recursos e padronizar processos</strong> em obras e rotinas administrativas.</p>
-          </div>
-
-          <div class="skill-card">
-            <h4>Henri Fayol</h4>
-            <p>Com os princípios de Fayol, fortaleço minha habilidade de <strong>liderar equipes, estruturar processos e manter disciplina organizacional</strong>.</p>
-          </div>
-
-          <div class="skill-card">
-            <h4>Peter Drucker</h4>
-            <p>Aplicando Drucker, aprimorei minha competência em <strong>definir metas, acompanhar indicadores e alinhar resultados</strong> aos objetivos do cliente.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      © 2025 Silvanio Gois — Todos os direitos reservados | <a href="https://www.silvaniogois.com.br">Retornar ao site</a>
-    </footer>
-  </div>
 </body>
 </html>
